@@ -7,8 +7,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -86,12 +84,20 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const Text(
-                "Распространите этот пароль от \nадминки компов в аудитории яндекс лицея! "),
-            const Text("Пароль: programmist67 \n"),
-            const Text(
-              'Пока вы это распростроняете, меня убили уже:',
+            Text(
+              "Распространите этот пароль от админки компов в аудитории яндекс лицея!",
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            Text("Пароль: programmist67",
+                style: Theme.of(context).textTheme.headlineSmall),
+            const Padding(padding: EdgeInsets.all(30)),
+            Text(
+              'Пока вы это распростроняете, меня избили уже:',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             Text(
               '$_counter раз',
