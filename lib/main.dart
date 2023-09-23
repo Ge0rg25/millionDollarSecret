@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -82,28 +84,53 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "Распространите этот пароль от админки компов в аудитории яндекс лицея!",
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            Text("Пароль: programmist67",
-                style: Theme.of(context).textTheme.headlineSmall),
-            const Padding(padding: EdgeInsets.all(30)),
-            Text(
-              'Пока вы это распростроняете, меня избили уже:',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            Text(
-              '$_counter раз',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        child: SizedBox(
+          width: 370,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Распространите этот пароль от админки компов в аудитории яндекс лицея!",
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              InkWell(
+                onTap: () async {
+                  await Clipboard.setData(
+                      const ClipboardData(text: "programmist67"));
+                  Fluttertoast.showToast(
+                      msg: "Скопировано в буфер обмена",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.TOP_LEFT,
+                      timeInSecForIosWeb: 2,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 20.0);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 300,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: const Text("Пароль: programmist67",
+                      style: TextStyle(fontSize: 23, color: Colors.white)),
+                ),
+              ),
+              const Padding(padding: EdgeInsets.all(30)),
+              Text(
+                'Пока вы это распростроняете, меня избили уже:',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              Text(
+                '$_counter раз',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: Row(
